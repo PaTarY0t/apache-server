@@ -1,0 +1,43 @@
+Install OpenSSH Server
+
+To install the SSH server on Ubuntu
+
+sudo apt install openssh-server -y
+
+3. Check the service status
+
+After installation check if SSH is running
+
+sudo systemctl status ssh
+
+If it’s active you’ll see active (running)
+
+4. Enable SSH at startup
+
+Ensure SSH starts automatically on reboot
+
+sudo systemctl enable ssh
+
+5. (Optional) Modify SSH settings
+
+You can edit the configuration file to change the default port or allow specific users
+
+sudo nano /etc/ssh/sshd_config
+
+After making changes restart the service
+
+sudo systemctl restart ssh
+
+6. Test the connection
+
+From another device connect to the server via SSH
+
+ssh username@server_ip
+
+Replace username with your username and server_ip with the server’s IP address
+
+Security tips
+
+Avoid using the default port 22 if your server is internet-facing; use a different port
+
+Disable password login and use SSH keys for more secure access
