@@ -1,0 +1,38 @@
+On The Ubuntu Server
+================================
+Update first server
+
+sudo apt update && sudo apt upgrade -y
+=================================
+
+install the apache2
+
+sudo apt install apache2 -y
+
+and run this command
+
+sudo systemctl status apache2
+
+and go to you browser  add http://IP
+==========================================
+
+install Mysql
+
+sudo apt install mysql-server -y
+
+sudo mysql_secure_installation
+=====================================
+php install
+
+sudo apt install php libapache2-mod-php php-mysql php-cli php-curl php-gd php-mbstring php-xml php-zip php-soap php-intl -y
+
+==========================================================================
+
+install phpmyadmin
+
+sudo apt install phpmyadmin -y
+
+sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
+===============================================
+Restart
+sudo systemctl restart apache2
