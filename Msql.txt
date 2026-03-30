@@ -1,0 +1,12 @@
+
+=============================
+Mysql crate
+
+Change The User 'Admin' And '111111111' 
+
+First sudo mysql 
+=============================================
+
+CREATE USER 'admin'@'localhost' IDENTIFIED BY '111111111111';
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost';
+FLUSH PRIVILEGES;
