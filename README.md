@@ -1,2 +1,1 @@
-# apache-server
-s
+# apache-server & Mysql command 
