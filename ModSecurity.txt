@@ -1,0 +1,69 @@
+installing ModSecurity on Ubuntu with Apache
+
+sudo apt install libapache2-mod-security2 -y
+=============================================
+Enable ModSecurity
+
+sudo a2enmod security2
+sudo systemctl restart apache2
+================================
+
+Configuring ModSecurity
+
+Operation Mode
+
+DetectionOnly mode: only monitors attacks, does not block them
+
+On (Enforce) mode: actively blocks attacks
+
+To change the mode:
+
+sudo nano /etc/modsecurity/modsecurity.conf
+Find the line:
+SecRuleEngine DetectionOnly
+
+Change it to:
+SecRuleEngine On
+
+Restart Apache:
+sudo systemctl restart apache2
+===============================
+Using a Strong Rule Set
+sudo apt install modsecurity-crs -y
+
+Link the rules to Apache:
+
+sudo ln -s /usr/share/modsecurity-crs/base_rules/* /usr/share/modsecurity-crs/activated_rules/
+sudo systemctl restart apache2
+
+Verify ModSecurity is Working
+
+sudo apache2ctl -M | grep security
+
+You should see: security2_module (shared)
+
+After these steps, your website will be protected from most common web attacks
+================================================
+
+Recommended Extra Settings
+
+Log Suspicious Requests
+sudo tail -f /var/log/apache2/modsec_audit.log
+
+Fine-tune Rules (Optional)
+Some CRS rules may block valid requests.
+You can disable individual rules by editing files in /usr/share/modsecurity-crs/activated_rules/ and commenting out lines starting with SecRule
+=======================================================
+Protect Against Large Requests
+
+SecRequestBodyLimit 13107200
+SecRequestBodyNoFilesLimit 131072
+SecRequestBodyInMemoryLimit 131072
+=======================================
+Verify ModSecurity is Active
+
+sudo apache2ctl -M | grep security
+
+Output should show: security2_module (shared)
+
+=========================================
