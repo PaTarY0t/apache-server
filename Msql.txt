@@ -5,6 +5,8 @@ Mysql crate
 Change The User 'Admin' And '111111111' 
 
 First sudo mysql 
+
+SELECT User, Host FROM mysql.user;
 =============================================
 
 CREATE USER 'admin'@'localhost' IDENTIFIED BY '111111111111';
